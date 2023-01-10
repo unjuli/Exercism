@@ -3,7 +3,7 @@
 function two-fer() {
   default='you'
   name=${1:-$default}   
-  printf "One for $name, one for me."
+  printf 'One for %s, one for me.' "$name"
 }
 
 main () {
