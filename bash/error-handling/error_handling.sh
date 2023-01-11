@@ -7,7 +7,7 @@ err() {
 
 function error-handling() {
   if [ "$#" -eq 1 ]; then
-    echo "Hello, $@"
+    printf "Hello, %s" "$@"
   else
     err
   fi
