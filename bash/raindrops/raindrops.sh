@@ -8,10 +8,8 @@ raindrops() {
     [5]="Plang"
     [7]="Plong"
   )
-  for i in "${!fizzmap[@]}"; do
-    if [[ $(( num % i )) == 0 ]]
-      then fizzbuzz+="${fizzmap[$i]}"
-    fi
+  for divisor in "${!fizzmap[@]}"; do
+    (( num % divisor )) || fizzbuzz+="${fizzmap[divisor]}"
    done
 
   echo "${fizzbuzz:=$num}"
@@ -23,13 +21,9 @@ err() {
 }
 
 main() {
-  if [ $# -ne 1 ]
-   then err "invalid arguments"
-  fi
+  (( $# == 1 )) || err "invalid arguments"
 
-  local result_str
-  result_str=$(raindrops "$1")
-  echo "$result_str"
+  raindrops "$1"
 }
 
 main "$@"
