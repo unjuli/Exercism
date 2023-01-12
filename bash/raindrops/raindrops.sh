@@ -9,7 +9,7 @@ raindrops() {
     [7]="Plong"
   )
   for divisor in "${!fizzmap[@]}"; do
-    (( num % divisor )) || fizzbuzz+="${fizzmap[divisor]}"
+    (( num % divisor == 0 )) && fizzbuzz+="${fizzmap[divisor]}"
    done
 
   echo "${fizzbuzz:=$num}"
