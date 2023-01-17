@@ -1,18 +1,14 @@
 #!/usr/bin/env bash
 
-# disabled extended globbing
-set -o noglob
-
 function acronym() {
-  IFS=" -"
   local acronym=""
-  read -ra phrase <<<"$@" 
-  for word in "${phrase[@]}"; do
-    word=$(echo "$word" | tr -d '[:punct:]' )
+  phrase="${1//[^a-zA-Z\']/ }"
+
+  for word in $phrase; do
     acronym+="${word:0:1}"
   done
-  acronym=$(echo "$acronym" | tr '[:lower:]' '[:upper:]')  
-  echo "$acronym"
+
+  echo "${acronym^^}"
 }
 
 acronym "$@"
